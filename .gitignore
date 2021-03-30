@@ -10,3 +10,7 @@
 Makefile
 depend
 zarith_version.ml
+
+*.wo
+*.swp
+*.wasm
