@@ -3410,7 +3410,7 @@ static void ml_z_dump_count()
 }
 #endif
 
-CAMLprim value ml_z_init()
+CAMLprim value ml_z_init(value unit)
 {
   ml_z_2p32 = ldexp(1., 32);
   /* run-time checks */

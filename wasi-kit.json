@@ -3,7 +3,7 @@
         "args": ["-target", "wasm32-unknown-emscripten", "-D__wasi__", "-fPIC"]
     },
     "dllzarith.so": {
-        "output": "dllzarith.wasm",
+        "output": "bin/dllzarith.wasm",
         "args": [
             "-nostdlib", "-target", "wasm32-unknown-emscripten", "-D__wasi__", "-fPIC",
             "-Wl,--shared", "-Wl,-allow-undefined", "-Wl,--import-table", "-Wl,--export-all"],

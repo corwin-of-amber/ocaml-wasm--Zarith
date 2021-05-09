@@ -1,13 +1,18 @@
 
-OCAML_SRC=${OCAML_SRC:=../ocaml}
+OCAML_SRC=${OCAML_SRC:=../../ocaml-4.10}
+GMP_SRC=${GMP_SRC:=../../../gnu/gmp}
 
-CCSHARED="$WASI_SDK/bin/clang -target wasm32-unknown-emscripten -D__wasi__ -fPIC -Wl,--shared"
-CCFLAGS="-Os -nostdlib -Wl,--export-all -include $WASIK_INC/etc.h -I $WASIK_INC -I $OCAML_SRC/runtime"
+LIBS="$GMP_SRC/.libs/libgmp.a"
 
-CCFLAGS="-Os -DHAS_GMP -I $OCAML_SRC/runtime"
-LDFLAGS="-shared -Wl,-flat_namespace,-undefined,suppress"
+# LDFLAGS are for macOS :/
+CCFLAGS="-Os -DHAS_GMP -I $OCAML_SRC/runtime -I $GMP_SRC"
+LDFLAGS="-shared -Wl,-flat_namespace,-undefined,suppress $LIBS"
 
 mkdir -p bin
 
-wasi-kit clang $CCFLAGS -c caml_z_stubs.c -o caml_z_stubs.o
-wasi-kit clang $LDFLAGS caml_z_stubs.o -o dllzarith.so
+# (empty stubs)
+#wasi-kit clang $CCFLAGS -c caml_z_stubs.c -o caml_z_stubs.o
+#wasi-kit clang $LDFLAGS caml_z_stubs.o -o dllzarith.so
+
+wasi-kit clang $CCFLAGS -c caml_z.c -o caml_z.o
+wasi-kit clang $LDFLAGS caml_z.o -o dllzarith.so
