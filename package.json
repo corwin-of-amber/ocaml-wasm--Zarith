@@ -1,6 +1,6 @@
 {
     "name": "@ocaml-wasm/4.12--zarith",
-    "version": "1.12.0-0",
+    "version": "1.13.0-0",
     "description": "The Zarith library implements arithmetic and logical operations over arbitrary-precision integers and rational numbers. (WASM port, wasi-sdk 12)",
     "scripts": {
         "build": "./compile-wasi",
